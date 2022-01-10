@@ -1,0 +1,26 @@
+<%- include('../layouts/header', { title: 'Cadastrando uma pessoa' })%>
+<%- include('../layouts/menu')%>
+
+<body class="has-background-black">
+    <div class="is-flex is-justify-content-center">
+        <div>
+            <div class="field">
+                <label class="label">Nome da pessoa</label>
+                <div class="control has-icons-left has-icons-right">
+                  <input class="input has-background-grey-lighter" type="text">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                </span>
+                </div>
+            </div>
+            <div class="field is-grouped is-flex is-justify-content-end">
+                <div class="control">
+                    <button class="button is-success is-outlined mr-4">Cadastrar pessoa</button>
+                </div>
+                <div class="control">
+                    <button class="button is-danger">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../layouts/footer')%>

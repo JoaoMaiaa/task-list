@@ -4,23 +4,23 @@ const router = express.Router()
 
 router.get('/', async (req, res)=>{
     try{
-        res.status(200).render('pages/person-list')
+        res.status(200).render('pages/index')
     }catch(error){
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
     }
 })
 
-router.get('/create-person', async (req, res)=>{
+router.get('/contact', async (req, res)=>{
     try{
-        res.status(200).render('pages/create-person')
+        res.status(200).render('pages/contact')
     }catch(error){
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
     }
 })
 
-router.get('/edit-person', async (req, res)=>{
+router.get('/general-list', async (req, res)=>{
     try{
-        res.status(200).render('pages/edit-person')
+        res.status(200).render('pages/general-list')
     }catch(error){
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
     }
