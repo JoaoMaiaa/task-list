@@ -1,0 +1,14 @@
+body{
+    height:100vh;
+}
+.text-content{
+    margin-top:6rem;
+}
+
+.text-content h1{
+    font-size:35px;
+}
+
+.text-content h2{
+    font-size:22px;
+}

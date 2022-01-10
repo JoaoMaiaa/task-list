@@ -4,7 +4,8 @@
   "description": "app de lista com backend e frontend completo",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "npm prune"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,9 @@
   },
   "homepage": "https://github.com/JoaoMaiaa/task-list#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "bulma": "^0.9.3",
     "express": "^4.17.2",
-    "fontawesome": "^5.6.3",
     "mongoose": "^6.1.5",
     "nodemon": "^2.0.15"
   }
