@@ -3,11 +3,12 @@
 
 <body class="has-background-black">
     <div class="is-flex is-justify-content-center">
-        <div>
+        <form method="post" action="/persons/create-person">
+            <div>
             <div class="field">
                 <label class="label">Nome da pessoa</label>
                 <div class="control has-icons-left has-icons-right">
-                  <input class="input has-background-grey-lighter" type="text">
+                  <input name="person[name]" class="input has-background-grey-lighter" type="text">
                 <span class="icon is-small is-left">
                     <i class="fas fa-user" aria-hidden="true"></i>
                 </span>
@@ -21,6 +22,7 @@
                     <button class="button is-danger">Cancelar</button>
                 </div>
             </div>
-        </div>
+            </div>
+        </form>
     </div>
 <%- include('../layouts/footer')%>

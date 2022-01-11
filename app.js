@@ -5,6 +5,8 @@ const rootRoute = require('./src/routes/rootRoute')
 const taskRoute = require('./src/routes/taskRoute')
 const personRoute = require('./src/routes/personRoute')
 
+require('./config/database')
+
 const app = express()
 
 app.use(express.json())
