@@ -1,18 +1,20 @@
 const express = require('express')
 
-const Person = require('../models/personModels')
+const Persons = require('../models/personModels')
 
 const router = express.Router()
 
 router.get('/', async (req, res)=>{
+    let persons = await Persons.find({})
     try{
-        res.status(200).render('pages/person-list')
+        res.status(200).render('pages/person-list', { persons: persons })
     }catch(error){
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
     }
 })
 
 router.get('/create-person', async (req, res)=>{
+    let person = new Persons()
     try{
         res.status(200).render('pages/create-person')
     }catch(error){
@@ -21,10 +23,12 @@ router.get('/create-person', async (req, res)=>{
 })
 
 router.post('/create-person', async (req, res)=>{
-    let { person } = req.body
-    res.status(200)
+    let { name } = req.body.person
+    let persons = await Persons.create({ name })
     try{
-        // res.status(200).render('pages/general-list')
+        await persons.save()
+        console.log("create-person: " + persons)
+        res.status(200).redirect('/general-list')
     }catch(error){
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
     }

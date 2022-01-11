@@ -1,5 +1,12 @@
 <%- include('../layouts/header', { title: 'Oooooops' })%>
 <%- include('../layouts/menu')%>
 
+<body class="has-background-black">
+    <h1 class="has-text-centered mt-6">
+        <%= error %>
+    </h1>
+    <div class="p-4 is-flex is-justify-content-center">
+        <a href="/" class=" button is-primary is-outlined">Voltar para a página inicial</a>
+    </div>
 
 <%- include('../layouts/footer')%>
