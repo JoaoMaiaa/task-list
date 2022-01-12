@@ -1,0 +1,26 @@
+<%- include('../layouts/header', { title: `Informações de ` })%>
+<%- include('../layouts/menu')%>
+
+<body class="has-background-black">
+    
+<div class="container">
+    <div class="is-flex is-justify-content-end">
+        <a href="/tasks/<%=person.id %>/create-task" class="button is-outlined is-primary is-small">Criar nova tarefa</a>
+    </div>
+    <h1 class="title"><%= person.name %></h1>
+    <div class="is-flex is-justify-content-end">
+        total de tarefas - <%= person.tasks.length %>
+    </div>
+    <div class="columns">
+        <div class="column is-4">
+            <% person.tasks.forEach(task =>{%>
+            <div class="notification is-primary mt-6">
+                <h2 class="subtitle"><%= task.name %></h2>
+                <%= task.description %>
+                <button class="delete"></button>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+<%- include('../layouts/footer')%>

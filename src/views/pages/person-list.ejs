@@ -2,5 +2,25 @@
 <%- include('../layouts/menu')%>
 
 <body class="has-background-black">
+    <div class="container">
+        <table class="table has-background-black is-fullwidth">
+            <thead>
+                <tr>
+                    <!-- <th>ID</th> -->
+                    <th>Nome</th>
+                    <!-- <th>Tarefas</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <% persons.forEach(person => {%>
+                    <tr>
+                        <!-- <td><%= person.id %></td> -->
+                        <td><%= person.name %></td>
+                        <!-- <td><%= person.tasks.name %></td> -->
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
 
 <%- include('../layouts/footer')%>

@@ -16,7 +16,8 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, 'node_modules')))
 app.use(express.static(path.join(__dirname, 'assets')))
 
-app.use(methodOverride('_method'))
+// este metodo sobreecrevre o post e o get e auxilia no put e delete
+app.use(methodOverride('_method', { methods: ['POST', 'GET'] }))
 
 app.set('views', path.join(__dirname, 'src/views'))
 app.set('view engine', 'ejs')

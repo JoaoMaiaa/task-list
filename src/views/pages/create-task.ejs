@@ -2,7 +2,7 @@
 <%- include('../layouts/menu')%>
 <body class="has-background-black">
     <div class="is-flex is-justify-content-center">
-        <form method="post" action="/tasks/create-task">
+        <form method="post" action="/tasks/<%= task.id%>/create-task">
         <div>
             <div class="field">
                 <label class="label">Nome da tarefa</label>
@@ -17,7 +17,7 @@
             <div class="field">
                 <label class="label">Descrição</label>
                 <div class="control">
-                    <textarea name="description[name]" class="has-background-grey-lighter textarea"></textarea>
+                    <textarea name="description[description]" class="has-background-grey-lighter textarea"></textarea>
                 </div>
             </div>
               
@@ -26,7 +26,7 @@
                     <button class="button is-success is-outlined mr-4">Cadastrar tarefa</button>
                 </div>
                 <div class="control">
-                    <button class="button is-danger">Cancelar</button>
+                    <a href="/persons/<%= taskId %>/show" class="button is-danger">Cancelar</a>
                 </div>
             </div>
         </div>

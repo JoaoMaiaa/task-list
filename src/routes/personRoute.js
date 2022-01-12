@@ -6,6 +6,7 @@ const router = express.Router()
 
 router.get('/', async (req, res)=>{
     let persons = await Persons.find({})
+    console.log(persons.tasks)
     try{
         res.status(200).render('pages/person-list', { persons: persons })
     }catch(error){
@@ -38,7 +39,16 @@ router.get('/:id/edit-person', async (req, res)=>{
         let persons = await Persons.findById(req.params.id)
         res.status(200).render('pages/edit-person', { persons: persons })
     }catch(error){
-        res.status(422).render('pages/error', { error: 'Não foi carregar o usuário' })
+        res.status(422).render('pages/error', { error: 'Não foi possível carregar o usuário' })
+    }
+})
+
+router.get('/:id/show', async (req, res)=>{
+    try{
+        let person = await Persons.findById(req.params.id)
+        res.status(200).render('pages/show', { person: person })
+    }catch(error){
+        res.status(422).render('pages/error', { error: 'Não foi possível vizualizar o usuário' })
     }
 })
 
@@ -49,7 +59,16 @@ router.put('/:id', async (req, res)=>{
         await person.update( {name} )
         res.redirect('/general-list')
     }catch(error){
-        res.status(422).render('pages/error', { persons: { ...person ,error: 'Não foi editar o usuário' } })
+        res.status(422).render('pages/error', { persons: { ...person, error: 'Não foi possível editar o usuário' } })
+    }
+})
+
+router.delete('/:id', async (req, res)=>{
+    try{
+        await Persons.findByIdAndRemove(req.params.id)
+        res.redirect('/general-list')
+    }catch(error){
+        res.status(422).render('pages/error', { error: 'Não foi possível deletar o usuário'})
     }
 })
 

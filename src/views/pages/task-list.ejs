@@ -1,5 +1,27 @@
-<%- include('../layouts/header', { title: 'Lista de tarefas' })%>
+<%- include('../layouts/header', { title: 'Listas de tarefas' })%>
 <%- include('../layouts/menu')%>
+
+<body class="has-background-black">
+<div class="container">
+    <table class="table has-background-black is-fullwidth">
+        <thead>
+            <tr>
+                <!-- <th>ID</th> -->
+                <th>Nome da tarefa</th>
+                <th>Pessoas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% tasks.forEach(task => {%>
+                <tr>
+                    <!-- <td><%= task.id %></td> -->
+                    <td><%= task.name %></td>
+                    <!-- <td><%= task.description %></td> -->
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
 
 
 <%- include('../layouts/footer')%>

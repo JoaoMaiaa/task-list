@@ -1,4 +1,4 @@
-<%- include('../layouts/header', { title: 'Listas' })%>
+<%- include('../layouts/header', { title: 'Listas e pessoas' })%>
 <%- include('../layouts/menu')%>
 
 <body class="has-background-black">
@@ -19,8 +19,9 @@
                     <td><%= person.name %></td>
                     <td><%= person.tasks.length %> tarefa(s)</td>
                     <td>
-                        <a class="button is-primary is-small is-outlined" href="/persons/<%= person.id%>/edit-person">Editar</a>
-                        <a class="button is-danger is-small" href="#">Excluir</a>
+                        <a class="button is-primary is-small is-outlined" href="/persons/<%= person.id%>/edit-person">Editar pessoa</a>
+                        <a class="button is-info is-small is-outlined" href="/persons/<%= person.id%>/show">Visualizar</a>
+                        <a class="button is-danger is-small is-outlined" href="/persons/<%= person.id%>?_method=delete">Excluir</a>   
                     </td>
                 </tr>
             <% }) %>
