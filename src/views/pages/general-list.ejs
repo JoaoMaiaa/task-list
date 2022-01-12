@@ -2,29 +2,31 @@
 <%- include('../layouts/menu')%>
 
 <body class="has-background-black">
-    <table class="table has-background-black is-hoverable is-fullwidth">
+<div class="container">
+    <table class="table has-background-black is-fullwidth">
         <thead>
             <tr>
-                <th>ID</th>
+                <!-- <th>ID</th> -->
                 <th>Nome</th>
-                <th>Quantidade de tarefas</th>
+                <th>Tarefas</th>
                 <th>Ação</th>
             </tr>
         </thead>
         <tbody>
             <% persons.forEach(person => {%>
                 <tr>
-                    <td><%= person.id %></td>
+                    <!-- <td><%= person.id %></td> -->
                     <td><%= person.name %></td>
-                    <td><%= person.tasks.length %></td>
+                    <td><%= person.tasks.length %> tarefa(s)</td>
                     <td>
-                        <a class="button is-primary is-small is-outlined" href="#">Editar</a>
+                        <a class="button is-primary is-small is-outlined" href="/persons/<%= person.id%>/edit-person">Editar</a>
                         <a class="button is-danger is-small" href="#">Excluir</a>
                     </td>
                 </tr>
             <% }) %>
         </tbody>
     </table>
+</div>
 
 
 <%- include('../layouts/footer')%>

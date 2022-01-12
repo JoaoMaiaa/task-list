@@ -3,24 +3,29 @@
 <body class="has-background-black">
     <div class="is-flex is-justify-content-center">
         <div>
-            <div class="field">
-                <label class="label">Novo nome da pessoa</label>
-                <div class="control has-icons-left has-icons-right">
-                  <input class="input has-background-grey-lighter" type="text">
-                <span class="icon is-small is-left">
-                    <i class="fa fa-tasks" aria-hidden="true"></i>
-                </span>
+
+            <form action="/persons/<%= persons.id%>?_method=put" method="post">
+                <div class="field">
+                    <label class="label">Novo nome da pessoa</label>
+                    <div class="control has-icons-left has-icons-right">
+                        
+                            <input name="person[name]" class="input has-background-grey-lighter" type="text" value="<%= persons.name %>">
+            
+                        <span class="icon is-small is-left">
+                        <i class="fa fa-tasks" aria-hidden="true"></i>
+                    </span>
+                    </div>
                 </div>
-            </div>
-              
-            <div class="field is-grouped is-flex is-justify-content-end">
-                <div class="control">
-                    <button class="button is-success is-outlined mr-4">Editar pessoa</button>
+                
+                <div class="field is-grouped is-flex is-justify-content-end">
+                    <div class="control">
+                        <button class="button is-success is-outlined mr-4">Editar pessoa</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-danger">Cancelar</button>
+                    </div>
                 </div>
-                <div class="control">
-                    <button class="button is-danger">Cancelar</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 <%- include('../layouts/footer')%>
