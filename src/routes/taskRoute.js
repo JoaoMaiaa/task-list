@@ -1,6 +1,7 @@
 const express = require('express')
 
 const Task = require('../models/taskModels')
+const Persons = require('../models/personModels')
 
 const router = express.Router()
 
@@ -29,16 +30,23 @@ router.get('/:id/create-task', async (req, res)=>{
     }
 })
 
+// Isso é inacreditável (ruim). Não é automático a ralação, portanto
+// no mongo deve ser feito manualmente a relação de onde os dados estão 
+// Além de atualizar a task, devo atualizar também a pessoa
+
 router.post('/:id/create-task', async (req, res)=>{
-    let { task, description } = req.body
+    let { name } = req.body.task
+    let { description } = req.body.description 
 
-    console.log(task)
-    console.log(description)
-
+    let task = new Task({ name, description, persons: req.params.id })
     try{
-        // res.status(200).render('/general-list')
+        await task.save()
+        let persons = await Persons.findById(req.params.id)
+        persons.tasks.push(task)
+        await persons.save()
+        res.status(200).redirect('/general-list')
     }catch(error){
-        res.status(422).render('pages/error', { error: 'Não foi possível cadastrar uma nova tarefa' })
+        res.status(422).render('pages/error', { error: 'Não foi possível cadastrar uma tarefa' })
     }
 })
 

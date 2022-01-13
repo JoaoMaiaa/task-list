@@ -5,9 +5,8 @@ const Persons = require('../models/personModels')
 const router = express.Router()
 
 router.get('/', async (req, res)=>{
-    let persons = await Persons.find({})
-    console.log(persons.tasks)
     try{
+        let persons = await Persons.find({}).populate('tasks')
         res.status(200).render('pages/person-list', { persons: persons })
     }catch(error){
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
@@ -45,8 +44,9 @@ router.get('/:id/edit-person', async (req, res)=>{
 
 router.get('/:id/show', async (req, res)=>{
     try{
-        let person = await Persons.findById(req.params.id)
-        res.status(200).render('pages/show', { person: person })
+        let persons = await Persons.findById(req.params.id).populate('tasks')
+        console.log(persons.tasks)
+        res.status(200).render('pages/show', { persons: persons })
     }catch(error){
         res.status(422).render('pages/error', { error: 'Não foi possível vizualizar o usuário' })
     }
