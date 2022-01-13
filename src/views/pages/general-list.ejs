@@ -4,6 +4,13 @@
 <body class="has-background-black">
 <div class="container">
     <table class="table has-background-black is-fullwidth">
+
+        <div class="is-flex is-justify-content-center">
+            <% if( persons.length == 0 ){ %>
+                <h1 class="subtitle">Não há cadastros</h1>
+            <% } %>
+        </div>
+
         <thead>
             <tr>
                 <!-- <th>ID</th> -->
@@ -27,6 +34,10 @@
             <% }) %>
         </tbody>
     </table>
+
+    <div class="is-flex is-justify-content-end">
+        <a class="mt-6 button is-small is-primary is-outlined" href="/persons/create-person">Criar um cadastro</a>
+    </div>
 </div>
 
 

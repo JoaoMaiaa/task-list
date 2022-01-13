@@ -12,16 +12,26 @@
         total de tarefas:  <%= persons.tasks.length %>
     </div>
 
+    <div class="is-flex is-justify-content-center">
+        <% if( persons.tasks.length == 0 ){ %>
+            <h1 class="subtitle">Não há tarefas</h1>
+        <% } %>
+    </div>
+
     <div class="columns is-desktop is-flex-wrap-wrap">
         <% persons.tasks.forEach(task =>{%>
         <div class="column is-one-third-widescreen is-full-mobile">
             <div class="notification is-primary mt-6">
                 <h2 class="subtitle"><%= task.name %></h2>
                 <p><%= task.description %></p>
-                <button class="delete"></button>
+                <a href="/tasks/<%= task.id %>?_method=delete" class="delete"></a>
             </div>
         </div>
         <% }) %>
+    </div>
+
+    <div class="is-flex is-justify-content-end mt-6">
+        <a href="/general-list" class="button is-outlined is-primary is-small">Voltar</a>
     </div>
 
 </div>

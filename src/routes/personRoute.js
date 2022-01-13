@@ -4,11 +4,20 @@ const Persons = require('../models/personModels')
 
 const router = express.Router()
 
+// há de se ter uma atenção aqui. como tasks é uma lista, não basta iterar
+// sobre o person mas mais do que isso, iterar também sobre a mesma task, o resto
+// é o resultado no ejs
 router.get('/', async (req, res)=>{
     try{
         let persons = await Persons.find({}).populate('tasks')
+        // persons.forEach(person=>{
+        //     person.tasks.forEach(task=>{
+        //         console.log(task.name)
+        //     })
+        // })
         res.status(200).render('pages/person-list', { persons: persons })
     }catch(error){
+        console.log(error)
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
     }
 })
@@ -45,7 +54,6 @@ router.get('/:id/edit-person', async (req, res)=>{
 router.get('/:id/show', async (req, res)=>{
     try{
         let persons = await Persons.findById(req.params.id).populate('tasks')
-        console.log(persons.tasks)
         res.status(200).render('pages/show', { persons: persons })
     }catch(error){
         res.status(422).render('pages/error', { error: 'Não foi possível vizualizar o usuário' })
