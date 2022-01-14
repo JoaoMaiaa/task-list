@@ -72,15 +72,16 @@ router.put('/:id', async (req, res)=>{
     }
 })
 
-// falta correção
+// deu trabalho
 router.delete('/:id', async (req, res)=>{
     try{
-        let person = await Persons.findByIdAndRemove(req.params.id)
-        // let task = await Tasks.findByIdAndRemove(person.tasks)
-        console.log(`task: ${ person }`)
-        await person.save()
-        // await task.save()
-        res.redirect('/general-list')
+        let person = await Persons.findByIdAndRemove(req.params.id).populate('tasks')
+        if(person.tasks == [{}]){
+            let task = await Tasks.findById(person.tasks)
+            await Tasks.findByIdAndRemove(task._id)
+        }else{
+            res.status(200).redirect('/general-list')
+        }  
     }catch(error){
         console.log(error)
         res.status(422).render('pages/error', { error: 'Não foi possível deletar o usuário'})

@@ -12,6 +12,7 @@ const router = express.Router()
 router.get('/', async (req, res)=>{
     try{
         let tasks = await Task.find({}).populate('persons')
+        // trech provisório
         tasks.forEach(task=>{
             console.log(task)
         })
