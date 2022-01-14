@@ -19,12 +19,13 @@
                     <h1 class="subtitle">Não há tarefas</h1>
                 <% } %>
             </div>
+
             <% tasks.forEach(task => {%>
                 <tr>
                     <td><%= task.name %></td>
                     <td><%= task.persons.name %></td>
                 </tr>
-            <% }) %>
+            <% }) %>        
         </tbody>
     </table>
     <div class="is-flex is-justify-content-end mt-6">

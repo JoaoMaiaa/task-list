@@ -1,6 +1,7 @@
 const express = require('express')
 
 const Persons = require('../models/personModels')
+const Tasks = require('../models/taskModels')
 
 const router = express.Router()
 
@@ -25,7 +26,7 @@ router.get('/', async (req, res)=>{
 router.get('/create-person', async (req, res)=>{
     let person = new Persons()
     try{
-        res.status(200).render('pages/create-person')
+        res.status(200).render('pages/create-person', { person: person })
     }catch(error){
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
     }
@@ -71,11 +72,17 @@ router.put('/:id', async (req, res)=>{
     }
 })
 
+// falta correção
 router.delete('/:id', async (req, res)=>{
     try{
-        await Persons.findByIdAndRemove(req.params.id)
+        let person = await Persons.findByIdAndRemove(req.params.id)
+        // let task = await Tasks.findByIdAndRemove(person.tasks)
+        console.log(`task: ${ person }`)
+        await person.save()
+        // await task.save()
         res.redirect('/general-list')
     }catch(error){
+        console.log(error)
         res.status(422).render('pages/error', { error: 'Não foi possível deletar o usuário'})
     }
 })

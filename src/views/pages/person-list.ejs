@@ -16,17 +16,18 @@
 
                 <div class="is-flex is-justify-content-center">
                     <% if( persons.length == 0 ){ %>
-                        <h1 class="subtitle">Não há tarefas</h1>
+                        <h1 class="subtitle">Não há pessoas</h1>
                     <% } %>
                 </div>
     
                 <% persons.forEach(person => {%>
-                    <% person.tasks.forEach(task =>{ %>
+                    
                     <tr>
                         <td><%= person.name %></td>
-                        <td><%= task.name %></td>
+                        <% person.tasks.forEach(task =>{ %>
+                            <td><%= task.name %></td>
+                        <% }) %>
                     </tr>
-                    <% }) %>
                 <% }) %>
             </tbody>
         </table>

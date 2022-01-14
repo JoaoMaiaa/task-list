@@ -12,9 +12,9 @@ const router = express.Router()
 router.get('/', async (req, res)=>{
     try{
         let tasks = await Task.find({}).populate('persons')
-        // tasks.forEach(task=>{
-        //     console.log(task.persons)
-        // })
+        tasks.forEach(task=>{
+            console.log(task)
+        })
         res.status(200).render('pages/task-list', { tasks: tasks })
     }catch(error){
         console.log(error)
@@ -74,6 +74,16 @@ router.delete('/:id', async (req, res)=>{
         person.tasks.splice(taskToRemove, 1)
         person.save()
         res.status(200).redirect(`/persons/${person._id}/show`)
+    }catch(error){
+        res.status(422).render('pages/error', {error: 'Não foi possível excluir a tarefa'})
+    }
+})
+
+// rota povisória
+router.delete('/:id/delete', async (req, res)=>{
+    try{
+        let task = await Task.findByIdAndRemove(req.params.id)
+        res.status(200).redirect(`/general-list`)
     }catch(error){
         res.status(422).render('pages/error', {error: 'Não foi possível excluir a tarefa'})
     }
