@@ -65,7 +65,7 @@ router.put('/:id', async (req, res)=>{
     let { name } = req.body.person
     let person = await Persons.findById(req.params.id)
     try{
-        await person.update( {name} )
+        await person.update( { name } )
         res.redirect('/general-list')
     }catch(error){
         res.status(422).render('pages/error', { persons: { ...person, error: 'Não foi possível editar o usuário' } })

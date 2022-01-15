@@ -71,21 +71,15 @@ router.get('/:id/edit-task', async (req, res)=>{
 })
 
 router.put('/:id/edit-task', async (req, res)=>{
-    let { name } = req.body.name
+    let { name } = req.body.task
     let { description } = req.body.description
-    try{
-        res.status(200).redirect('/general-list')
-    }catch(error){
-        res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
-    }
-})
 
-router.delete('/:id/delete', async (req, res)=>{
     try{
-        let task = await Task.findByIdAndRemove(req.params.id)
-        res.status(200).redirect(`/persons/${person._id}/show`)
+        let task = await Task.findById(req.params.id)
+        await task.updateOne({ name, description })
+        res.redirect('/general-list')
     }catch(error){
-        res.status(422).render('pages/error', {error: 'Não foi possível excluir a tarefa'})
+        res.status(422).render('pages/error', { error: 'Não foi possível editar este usuário' })
     }
 })
 

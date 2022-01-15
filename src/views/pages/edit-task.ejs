@@ -3,7 +3,7 @@
 <body class="has-background-black">
     <div class="is-flex is-justify-content-center">
         <div>
-            <form method="post" action="/tasks/<%= task._id%>/edit_task?_method=put">
+            <form method="post" action="/tasks/<%= task._id%>/edit-task?_method=put">
                 <div class="field">
                     <label class="label">Novo nome da tarefa</label>
                     <div class="control has-icons-left has-icons-right">
@@ -17,7 +17,7 @@
                 <div class="field">
                     <label class="label">Nova descrição</label>
                     <div class="control">
-                        <textarea name="task[description] "class="has-background-grey-lighter textarea"><%= task.description %></textarea>
+                        <textarea name="description[description] "class="has-background-grey-lighter textarea"><%= task.description %></textarea>
                     </div>
                 </div>
                 
