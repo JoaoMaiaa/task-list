@@ -77,7 +77,7 @@ router.put('/:id', async (req, res)=>{
 router.delete('/:id', async (req, res)=>{
     try{
         let person = await Persons.findByIdAndRemove(req.params.id).populate('tasks')
-        await Tasks.deleteMany({person})
+        await Tasks.deleteMany({ person })
         res.status(200).redirect('/general-list')
     }catch(error){
         console.log(error)

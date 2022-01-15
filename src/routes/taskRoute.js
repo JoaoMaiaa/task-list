@@ -44,12 +44,14 @@ router.get('/:id/create-task', async (req, res)=>{
 // Além de atualizar a task, devo atualizar também a pessoa
 
 router.post('/:id/create-task', async (req, res)=>{
+    // o nome é da task
     let { name } = req.body.task
     let { description } = req.body.description 
 
     let task = new Task({ name, description, persons: req.params.id })
     try{
         await task.save()
+        // id aqui é da pessoa
         let persons = await Persons.findById(req.params.id)
         persons.tasks.push(task)
         await persons.save()
@@ -59,9 +61,20 @@ router.post('/:id/create-task', async (req, res)=>{
     }
 })
 
-router.get('/edit-task', async (req, res)=>{
+router.get('/:id/edit-task', async (req, res)=>{
     try{
-        res.status(200).render('pages/edit-task')
+        let task = await Task.findById(req.params.id)
+        res.status(200).render('pages/edit-task', {task: task})
+    }catch(error){
+        res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
+    }
+})
+
+router.put('/:id/edit-task', async (req, res)=>{
+    let { name } = req.body.name
+    let { description } = req.body.description
+    try{
+        res.status(200).redirect('/general-list')
     }catch(error){
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
     }
@@ -75,16 +88,6 @@ router.delete('/:id', async (req, res)=>{
         person.tasks.splice(taskToRemove, 1)
         person.save()
         res.status(200).redirect(`/persons/${person._id}/show`)
-    }catch(error){
-        res.status(422).render('pages/error', {error: 'Não foi possível excluir a tarefa'})
-    }
-})
-
-// rota povisória
-router.delete('/:id/delete', async (req, res)=>{
-    try{
-        let task = await Task.findByIdAndRemove(req.params.id)
-        res.status(200).redirect(`/general-list`)
     }catch(error){
         res.status(422).render('pages/error', {error: 'Não foi possível excluir a tarefa'})
     }
