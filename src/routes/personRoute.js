@@ -73,15 +73,12 @@ router.put('/:id', async (req, res)=>{
 })
 
 // deu trabalho
+// (atualização) deleteMany é uma mão na roda. funcao nova do mongodb e mongoose
 router.delete('/:id', async (req, res)=>{
     try{
         let person = await Persons.findByIdAndRemove(req.params.id).populate('tasks')
-        if(person.tasks == [{}]){
-            let task = await Tasks.findById(person.tasks)
-            await Tasks.findByIdAndRemove(task._id)
-        }else{
-            res.status(200).redirect('/general-list')
-        }  
+        await Tasks.deleteMany({person})
+        res.status(200).redirect('/general-list')
     }catch(error){
         console.log(error)
         res.status(422).render('pages/error', { error: 'Não foi possível deletar o usuário'})
