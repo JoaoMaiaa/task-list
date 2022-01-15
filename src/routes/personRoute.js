@@ -74,10 +74,13 @@ router.put('/:id', async (req, res)=>{
 
 // deu trabalho
 // (atualização) deleteMany é uma mão na roda. funcao nova do mongodb e mongoose
+// resolvido todos os bugs de exclusão.
+// É necessário para excluir passar especificamente onde esta aquela pessoa. ({ persons:PERSON }) 
 router.delete('/:id', async (req, res)=>{
     try{
         let person = await Persons.findByIdAndRemove(req.params.id).populate('tasks')
-        await Tasks.deleteMany({ person })
+        let resDel = await Tasks.deleteMany({ persons: person })
+        console.log(resDel)
         res.status(200).redirect('/general-list')
     }catch(error){
         console.log(error)

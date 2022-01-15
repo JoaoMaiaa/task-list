@@ -22,7 +22,7 @@
         <% persons.tasks.forEach(task =>{%>
         <div class="column is-one-third-widescreen is-full-mobile">
             <a href="/tasks/<%= task.id %>/edit-task" class="mt-6 button is-primary is-outlined is-small">Editar tarefa</a>
-            <div class="notification is-primary mt-2">
+            <div class="notification is-primary mt-4">
                 <h2 class="subtitle"><%= task.name %></h2>
                 <p><%= task.description %></p>
                 <a href="/tasks/<%= task.id %>?_method=delete" class="delete"></a>

@@ -80,6 +80,15 @@ router.put('/:id/edit-task', async (req, res)=>{
     }
 })
 
+router.delete('/:id/delete', async (req, res)=>{
+    try{
+        let task = await Task.findByIdAndRemove(req.params.id)
+        res.status(200).redirect(`/persons/${person._id}/show`)
+    }catch(error){
+        res.status(422).render('pages/error', {error: 'Não foi possível excluir a tarefa'})
+    }
+})
+
 router.delete('/:id', async (req, res)=>{
     try{
         let task = await Task.findByIdAndRemove(req.params.id)
