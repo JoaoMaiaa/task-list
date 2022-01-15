@@ -12,13 +12,8 @@ const router = express.Router()
 router.get('/', async (req, res)=>{
     try{
         let tasks = await Task.find({}).populate('persons')
-        // trech provisório
-        tasks.forEach(task=>{
-            console.log(task)
-        })
         res.status(200).render('pages/task-list', { tasks: tasks })
     }catch(error){
-        console.log(error)
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
     }
 })

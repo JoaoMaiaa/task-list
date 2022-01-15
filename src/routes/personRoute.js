@@ -18,7 +18,6 @@ router.get('/', async (req, res)=>{
         // })
         res.status(200).render('pages/person-list', { persons: persons })
     }catch(error){
-        console.log(error)
         res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
     }
 })
@@ -80,10 +79,8 @@ router.delete('/:id', async (req, res)=>{
     try{
         let person = await Persons.findByIdAndRemove(req.params.id).populate('tasks')
         let resDel = await Tasks.deleteMany({ persons: person })
-        console.log(resDel)
         res.status(200).redirect('/general-list')
     }catch(error){
-        console.log(error)
         res.status(422).render('pages/error', { error: 'Não foi possível deletar o usuário'})
     }
 })

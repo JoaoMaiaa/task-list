@@ -7,7 +7,7 @@ router.get('/', async (req, res)=>{
     try{
         res.status(200).render('pages/index')
     }catch(error){
-        res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
+        res.status(422).render('pages/error', { error: 'Não foi possível a página principal' })
     }
 })
 
@@ -24,7 +24,7 @@ router.get('/contact', async (req, res)=>{
     try{
         res.status(200).render('pages/contact')
     }catch(error){
-        res.status(422).render('pages/error', { error: 'Não foi possível encontrar esta página' })
+        res.status(422).render('pages/error', { error: 'Não foi possível encontrar a página contato' })
     }
 })
 
