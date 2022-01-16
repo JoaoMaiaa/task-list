@@ -11,6 +11,7 @@ require('./config/database')
 const app = express()
 
 app.use(express.json())
+// dados de formulário
 app.use(express.urlencoded({extended: true}))
 
 app.use(express.static(path.join(__dirname, 'node_modules')))
