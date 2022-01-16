@@ -2,39 +2,37 @@
 <%- include('../layouts/menu')%>
 
 <body class="has-background-black">
-    <div class="container">
-        <table class="table has-background-black is-fullwidth">
+    <table class="table has-background-black is-fullwidth">
 
-            <thead>
+        <thead>
+            <tr>
+                <!-- <th>ID</th> -->
+                <th>Pessoas</th>
+                <th>Tarefas</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <div class="is-flex is-justify-content-center">
+                <% if( persons.length == 0 ){ %>
+                    <h1 class="subtitle">Não há pessoas</h1>
+                <% } %>
+            </div>
+
+            <% persons.forEach(person => {%>
+                <% person.tasks.forEach(task =>{ %>
                 <tr>
-                    <!-- <th>ID</th> -->
-                    <th>Pessoas</th>
-                    <th>Tarefas</th>
+                    <td><%= person.name %></td>
+                    <td><%= task.name %></td>
                 </tr>
-            </thead>
-            <tbody>
-
-                <div class="is-flex is-justify-content-center">
-                    <% if( persons.length == 0 ){ %>
-                        <h1 class="subtitle">Não há pessoas</h1>
-                    <% } %>
-                </div>
-    
-                <% persons.forEach(person => {%>
-                    <% person.tasks.forEach(task =>{ %>
-                    <tr>
-                        <td><%= person.name %></td>
-                        <td><%= task.name %></td>
-                    </tr>
-                    <% }) %>
                 <% }) %>
-            </tbody>
-        </table>
+            <% }) %>
+        </tbody>
+    </table>
         
-        <div class="is-flex is-justify-content-end mt-6">
-            <a href="/general-list" class="button is-outlined is-primary is-small">Voltar</a>
-        </div>
-
+    <div class="is-flex is-justify-content-end mt-6">
+        <a href="/general-list" class="button is-outlined is-primary is-small">Voltar</a>
     </div>
+
 
 <%- include('../layouts/footer')%>

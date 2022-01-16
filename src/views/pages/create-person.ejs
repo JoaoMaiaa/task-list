@@ -2,27 +2,27 @@
 <%- include('../layouts/menu')%>
 
 <body class="has-background-black">
-    <div class="is-flex is-justify-content-center">
-        <form method="post" action="/persons/create-person">
-            <div>
-            <div class="field">
-                <label class="label">Nome da pessoa</label>
-                <div class="control has-icons-left has-icons-right">
-                  <input name="person[name]" class="input has-background-grey-lighter" type="text">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-user" aria-hidden="true"></i>
-                </span>
+        <div class="is-flex is-justify-content-center">
+            <form method="post" action="/persons/create-person">
+                <div>
+                <div class="field">
+                    <label class="label">Nome da pessoa</label>
+                    <div class="control has-icons-left has-icons-right">
+                    <input name="person[name]" class="input has-background-grey-lighter" type="text">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user" aria-hidden="true"></i>
+                    </span>
+                    </div>
                 </div>
-            </div>
-            <div class="field is-grouped is-flex is-justify-content-end">
-                <div class="control">
-                    <button class="button is-success is-outlined mr-4">Cadastrar pessoa</button>
+                <div class="field is-grouped is-flex is-justify-content-end">
+                    <div class="control">
+                        <button class="button is-success is-outlined mr-4">Cadastrar pessoa</button>
+                    </div>
+                    <div class="control">
+                        <a href="/general-list" class="button is-danger">Cancelar</a>
+                    </div>
                 </div>
-                <div class="control">
-                    <a href="/general-list" class="button is-danger">Cancelar</a>
                 </div>
-            </div>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
 <%- include('../layouts/footer')%>
